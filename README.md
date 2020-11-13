@@ -10,3 +10,6 @@ Maybe this will be a working minecraft server in the future. 🤔
 * Get protocol / client version from client
 * Kick message on connect
 ![Kick Preview](docs/kick_message.gif?raw=true)
+
+## Credits
+* I stole most of the nbt stuff from [@Eisenwave/eisen-nbt](https://github.com/Eisenwave/eisen-nbt/)

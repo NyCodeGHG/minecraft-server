@@ -1,9 +1,13 @@
 package de.nycode.mcserver
 
+import de.nycode.mcserver.api.Identifier
+import de.nycode.mcserver.api.nbt.NBTList
+import de.nycode.mcserver.api.nbt.NBTString
 import java.io.DataInput
 import java.io.DataOutput
 import java.io.IOException
 import java.nio.charset.StandardCharsets
+import java.util.*
 import kotlin.experimental.and
 
 fun DataInput.readVarInt(): Int {
@@ -55,4 +59,23 @@ fun DataOutput.writeString(string: String) {
 
     this.writeVarInt(bytes.size)
     this.write(bytes)
+}
+
+fun DataOutput.writeUUID(uuid: UUID) {
+    writeLong(uuid.mostSignificantBits)
+    writeLong(uuid.leastSignificantBits)
+}
+
+fun DataInput.readUUID(): UUID {
+    val mostSignificantBits = readLong()
+    val leastSignificantBits = readLong()
+    return UUID(mostSignificantBits, leastSignificantBits)
+}
+
+fun DataOutput.writeIdentifier(identifier: Identifier) {
+    writeString(identifier.toString())
+}
+
+fun DataInput.readIdentifier(): Identifier {
+    return Identifier(readString())
 }

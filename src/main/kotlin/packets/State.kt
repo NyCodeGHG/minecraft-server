@@ -5,6 +5,7 @@ enum class State {
     HANDSHAKE,
     STATUS,
     LOGIN,
+    PLAY,
     ANY
 
 }
