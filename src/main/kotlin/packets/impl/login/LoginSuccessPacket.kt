@@ -3,6 +3,7 @@ package de.nycode.mcserver.packets.impl.login
 import de.nycode.mcserver.ClientHandler
 import de.nycode.mcserver.packets.Packet
 import de.nycode.mcserver.packets.State
+import de.nycode.mcserver.packets.impl.play.JoinGamePacket
 import de.nycode.mcserver.writeString
 import de.nycode.mcserver.writeUUID
 import java.io.DataInputStream
@@ -27,5 +28,7 @@ class LoginSuccessPacket(val uuid: UUID, val username: String, client: ClientHan
         output.writeUUID(this.uuid)
         output.writeString(this.username)
         client.currentState = State.PLAY
+
+        client.sendPacket(JoinGamePacket(client))
     }
 }
