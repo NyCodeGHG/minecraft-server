@@ -1,11 +1,13 @@
 package de.nycode.mcserver
 
 import de.nycode.mcserver.api.Identifier
+import de.nycode.mcserver.api.nbt.NBTCompound
 import de.nycode.mcserver.api.nbt.NBTList
 import de.nycode.mcserver.api.nbt.NBTString
-import java.io.DataInput
-import java.io.DataOutput
-import java.io.IOException
+import de.nycode.mcserver.api.nbt.io.NBTInputStream
+import de.nycode.mcserver.api.nbt.io.NBTOutputStream
+import de.nycode.mcserver.api.nbt.io.NBTSerializer
+import java.io.*
 import java.nio.charset.StandardCharsets
 import java.util.*
 import kotlin.experimental.and
@@ -78,4 +80,14 @@ fun DataOutput.writeIdentifier(identifier: Identifier) {
 
 fun DataInput.readIdentifier(): Identifier {
     return Identifier(readString())
+}
+
+fun DataOutputStream.writeCompound(compound: NBTCompound) {
+    val stream = NBTOutputStream(this)
+    stream.writeTagCompound(compound)
+}
+
+fun DataInputStream.readCompound(depth: Int): NBTCompound {
+    val stream = NBTInputStream(this)
+    return stream.readTagCompound(depth)
 }

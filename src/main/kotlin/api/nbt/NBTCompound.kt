@@ -10,7 +10,7 @@ class NBTCompound(value: Map<String, NBTTag<*>>) : NBTTag<LinkedHashMap<String, 
 
     constructor() : this(emptyMap())
 
-    constructor(vararg tags: NBTNamedTag) {
+    constructor(vararg tags: NBTNamedTag): this(emptyMap()) {
         for (tag in tags) {
             value[tag.name] = tag.tag
         }

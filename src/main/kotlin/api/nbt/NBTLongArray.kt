@@ -9,8 +9,7 @@ import java.util.*
  */
 class NBTLongArray(longArray: LongArray) : NBTTag<LongArray>(longArray), Cloneable {
 
-    constructor(numbers: Array<Number>) {
-        value = LongArray(numbers.size)
+    constructor(numbers: Array<Number>): this(LongArray(numbers.size)) {
         for (i in numbers.indices) value[i] = numbers[i].toLong()
     }
 

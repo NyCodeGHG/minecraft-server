@@ -13,12 +13,6 @@ class NBTByteArray(byteArray: ByteArray) : NBTTag<ByteArray>(byteArray), Cloneab
         }
         return stringbuilder.append(']').toString()
     }
-
-    constructor(numbers: Array<Number>) {
-        value = ByteArray(numbers.size)
-        for (i in numbers.indices) value[i] = numbers[i].toByte()
-    }
-
     fun length() = value.size
 
     override fun clone() = NBTByteArray(value)
