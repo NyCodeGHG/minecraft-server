@@ -1,4 +1,6 @@
 # Simple Minecraft Server
+![CI](https://github.com/NyCodeGHG/minecraft-server/workflows/CI/badge.svg)
+
 This is a small project by me experimenting with the [minecraft protocol](https://wiki.vg/Protocol).
 Maybe this will be a working minecraft server in the future. 🤔
 
