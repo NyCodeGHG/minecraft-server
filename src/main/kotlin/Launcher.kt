@@ -1,5 +1,5 @@
 package de.nycode.minecraftserver
 
-fun main() {
-
+suspend fun main() {
+    MinecraftServer()
 }

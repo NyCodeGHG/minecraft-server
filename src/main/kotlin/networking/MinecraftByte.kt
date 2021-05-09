@@ -9,8 +9,14 @@ val Input.minecraft
 val Output.minecraft
     get() = MinecraftByteOutput(this)
 
+val ByteReadChannel.minecraft
+    get() = MinecraftByteReadChannel(this)
+
+val ByteWriteChannel.minecraft
+    get() = MinecraftByteWriteChannel(this)
+
 @JvmInline
-value class MinecraftByteInput(private val buffer: Input) {
+value class MinecraftByteInput(internal val buffer: Input) {
     /**
      * Read a String from the [buffer] with the specified [maxLength]
      */
@@ -28,7 +34,7 @@ value class MinecraftByteInput(private val buffer: Input) {
 }
 
 @JvmInline
-value class MinecraftByteOutput(private val buffer: Output) {
+value class MinecraftByteOutput(internal val buffer: Output) {
     /**
      * Write a String to the [buffer]
      */
@@ -45,7 +51,7 @@ value class MinecraftByteOutput(private val buffer: Output) {
 }
 
 @JvmInline
-value class MinecraftByteReadChannel(private val channel: ByteReadChannel) {
+value class MinecraftByteReadChannel(internal val channel: ByteReadChannel) {
     suspend fun readString(maxLength: Int): String {
         return readString(
             maxLength,
@@ -70,7 +76,7 @@ value class MinecraftByteReadChannel(private val channel: ByteReadChannel) {
 }
 
 @JvmInline
-value class MinecraftByteWriteChannel(private val channel: ByteWriteChannel) {
+value class MinecraftByteWriteChannel(internal val channel: ByteWriteChannel) {
     suspend fun writeString(string: String) {
         writeString(string, { channel.writeByte(it) }, { channel.writeFully(it) })
     }
